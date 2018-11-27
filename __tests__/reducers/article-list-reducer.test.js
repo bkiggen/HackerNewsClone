@@ -4,7 +4,7 @@ describe('articleListReducer', ()=> {
 
   let action;
   const sampleArticleData = {
-    headLine: 'Weird Tales from Syracuse',
+    headline: 'Weird Tales from Syracuse',
     url: 'www.weirdtales.com',
     points: '44',
     poster: 'Dave Hillbrandt',
@@ -18,10 +18,10 @@ describe('articleListReducer', ()=> {
   });
 
   test('Should successfully add new article data to masterArticleList', () => {
-    const { headLine, url, points, poster, time, hide, id } = sampleArticleData;
+    const { headline, url, points, poster, time, hide, id } = sampleArticleData;
     action = {
       type: 'ADD_ARTICLE',
-      headLine: headLine,
+      headline: headline,
       url: url,
       points: points,
       poster: poster,
@@ -31,7 +31,7 @@ describe('articleListReducer', ()=> {
     };
     expect(articleListReducer({}, action)).toEqual({
       [id] : {
-        headLine: headLine,
+        headline: headline,
         url: url,
         points: points,
         poster: poster,

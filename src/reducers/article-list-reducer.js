@@ -1,6 +1,6 @@
 const basicHardCodedArticles = {
   1: {
-    headLine: 'Weird Tales from Syracuse',
+    headline: 'Weird Tales from Syracuse',
     url: 'www.weirdtales.com',
     points: '44',
     poster: 'Dave Hillbrandt',
@@ -9,7 +9,7 @@ const basicHardCodedArticles = {
     id: '1'
   },
   2: {
-    headLine: 'Fluffing your Pillow in Hell',
+    headline: 'Fluffing your Pillow in Hell',
     url: 'www.comfyhelltimes.com',
     points: '2',
     poster: 'Lucifer Morningstar',
@@ -18,7 +18,7 @@ const basicHardCodedArticles = {
     id: '2'
   },
   3: {
-    headLine: 'Is Water Wet?',
+    headline: 'Is Water Wet?',
     url: 'www.h2oh.com',
     points: '46',
     poster: 'Mary Smiles',
@@ -27,7 +27,7 @@ const basicHardCodedArticles = {
     id: '3'
   },
   4: {
-    headLine: 'Bagpipes Suck',
+    headline: 'Bagpipes Suck',
     url: 'www.squeeks.com',
     points: '2',
     poster: 'Milo Rumples',
@@ -35,17 +35,17 @@ const basicHardCodedArticles = {
     hide: false,
     id: '4'
   }
-}
+};
 
 
 export default (state = {basicHardCodedArticles}, action) => {
   switch (action.type) {
-    case 'ADD_ARTICLE':
-      const { headLine, url, points, poster, time, hide, id } = action;
+  case 'ADD_ARTICLE':
+    const { headline, url, points, poster, time, hide, id } = action;
 
-      let newState = Object.assign({}, state, {
+    let newBasic = Object.assign({}, state.basicHardCodedArticles, {
         [id]: {
-          headLine: headLine,
+          headline: headline,
           url: url,
           points: points,
           poster: poster,
@@ -53,9 +53,12 @@ export default (state = {basicHardCodedArticles}, action) => {
           hide: hide,
           id: id
         }
-      });
-      return newState;
-    default:
-      return state;
+    });
+    let newState = Object.assign({}, state, {
+      basicHardCodedArticles: newBasic
+    })
+    return newState;
+  default:
+    return state;
   }
 };

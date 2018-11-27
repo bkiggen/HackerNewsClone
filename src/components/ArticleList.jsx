@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Article from './Article';
 
 function ArticleList(props){
   return (
     <div>
-      <h2>Here be the ArticleList</h2>
-      {Object.keys(props.articleList).map(fucntion(articletId) {
-        var article = props.articleList[articleId];
+      {Object.keys(props.articleList.basicHardCodedArticles).map(function(articleId) {
+        var article = props.articleList.basicHardCodedArticles[articleId];
         return <Article headline={article.headline}
           url={article.url}
           points={article.points}
           poster={article.poster}
           time={article.time}
           hide={article.hide}
-          id={article.id}
+          id={article.id}/>;
       })}
     </div>
   );
