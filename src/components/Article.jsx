@@ -1,7 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 function Article(props){
+
+  function handleAddingUpvotePoint(event){
+    const { dispatch } = props;
+    event.preventDefault();
+    const action = { type:'UPVOTE', id: props.id};
+    dispatch(action);
+  }
+  function handleAddingDownvotePoint(event){
+    const { dispatch } = props;
+    event.preventDefault();
+    const action = { type:'DOWNVOTE', id: props.id};
+    dispatch(action);
+  }
+
+
+
   return (
     <div className="article-list-container-styles">
       <div className="headline-styles">
@@ -10,6 +27,10 @@ function Article(props){
         <p className="indiv-lines-styles">( {props.url} )</p>
       </div>
       <div className="headline-styles">
+        <div>
+          <button onClick={handleAddingUpvotePoint}>^</button>
+          <button onClick={handleAddingDownvotePoint}>v</button>
+        </div>
         <p className="indiv-lines-styles">{props.points} points </p>
         <p className="indiv-lines-styles">by {props.poster}</p>
         <p className="indiv-lines-styles"> minutes ago{props.time}</p>
@@ -44,11 +65,11 @@ function Article(props){
 Article.propTypes = {
   headline: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  points: PropTypes.string.isRequired,
+  points: PropTypes.number.isRequired,
   time: PropTypes.number.isRequired,
   hide: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired
 
 };
 
-export default Article;
+export default connect()(Article);

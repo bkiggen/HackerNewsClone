@@ -40,24 +40,34 @@ const basicHardCodedArticles = {
 
 export default (state = {basicHardCodedArticles}, action) => {
   switch (action.type) {
-  case 'ADD_ARTICLE':
-    const { headline, url, points, poster, time, hide, id } = action;
+    case 'ADD_ARTICLE':
+      const { headline, url, points, poster, time, hide, id } = action;
 
-    let newBasic = Object.assign({}, state.basicHardCodedArticles, {
-        [id]: {
-          headline: headline,
-          url: url,
-          points: points,
-          poster: poster,
-          time: time,
-          hide: hide,
-          id: id
-        }
-    });
-    let newState = Object.assign({}, state, {
-      basicHardCodedArticles: newBasic
-    })
-    return newState;
+      let newBasic = Object.assign({}, state.basicHardCodedArticles, {
+          [id]: {
+            headline: headline,
+            url: url,
+            points: points,
+            poster: poster,
+            time: time,
+            hide: hide,
+            id: id
+          }
+      });
+      let newState = Object.assign({}, state, {
+        basicHardCodedArticles: newBasic
+      })
+      return newState;
+
+    case 'UPVOTE':
+      let newUpvoteState = Object.assign({}, state, {});
+      newUpvoteState.basicHardCodedArticles[action.id].points++;
+    return newUpvoteState;
+
+    case 'DOWNVOTE':
+      let newDownvoteState = Object.assign({}, state, {});
+      newDownvoteState.basicHardCodedArticles[action.id].points--;
+    return newDownvoteState;
   default:
     return state;
   }
